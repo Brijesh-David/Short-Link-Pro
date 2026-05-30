@@ -23,27 +23,75 @@
             flex-direction: column;
         }
 
+        /* PREMIUM "FLOATING AURA" LOGO DESIGN */
         .header-logo {
             text-align: center;
             margin-bottom: 40px;
             display: flex;
             justify-content: center;
+            position: relative;
+            /* Required for the aura */
         }
 
+        /* The glowing blue aura BEHIND the logo */
+        .header-logo::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            /* Slightly tighter to match your new radius */
+            height: 60px;
+            background: #38bdf8;
+            filter: blur(40px);
+            opacity: 0.5;
+            z-index: 0;
+            transition: 0.4s ease;
+        }
+
+        /* The Main Logo Container */
         .header-logo div {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            /* PRO TOUCH: A hyper-subtle radial gradient simulating lighting from above */
+            background: radial-gradient(ellipse at top, rgba(255, 255, 255, 1) 0%, rgba(240, 244, 248, 0.95) 100%);
             padding: 20px 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            /* Tighter padding, perfectly proportioned */
+            border-radius: 20px;
+
+            /* Outer shadow for deep float, inner white shadow for top reflection */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 2px 2px rgba(255, 255, 255, 1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             display: inline-block;
+
+            /* CRITICAL FIX: Brings the white box ABOVE the glowing aura */
+            position: relative;
+            z-index: 1;
+            transition: 0.4s ease;
+            backdrop-filter: blur(10px);
+            /* Frosted glass effect */
         }
 
         .header-logo img {
-            max-height: 90px;
+            max-height: 85px;
             width: auto;
             mix-blend-mode: multiply;
+            /* Keeps the logo seamlessly blended */
             display: block;
+        }
+
+        /* The Hover Magic */
+        .header-logo:hover::before {
+            background: #4ade80;
+            /* Aura shifts to success-green! */
+            filter: blur(50px);
+            opacity: 0.7;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .header-logo:hover div {
+            transform: translateY(-4px);
+            /* Physically lifts off the page */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 2px 2px rgba(255, 255, 255, 1);
         }
 
         .container {
@@ -465,7 +513,7 @@
                 <h2 style="border: none; margin-bottom: 15px;">Link Engine</h2>
                 <div id="guestWarning" class="warning-box" style="margin-bottom: 20px;">
                     <strong>Guest Protocol Active:</strong> You are operating anonymously. Links generated here will
-                    self-destruct after 7 days (Limit: 5 max). <br><br>
+                    self-destruct after 7 days (Limit: 2 max). <br><br>
                     <span style="font-size: 13px; color: #cbd5e1;"><em>Note: Do not clear your browser cache if you wish
                             to continue managing your active temporary links in the Database tab.</em></span>
                 </div>
@@ -492,7 +540,7 @@
 
                 <div id="guestWarningDatabase" class="warning-box" style="margin-bottom: 20px; display: none;">
                     <strong>Guest Protocol Active:</strong> You are operating anonymously. Links generated here will
-                    self-destruct after 7 days (Limit: 5 max). <br><br>
+                    self-destruct after 7 days (Limit: 2 max). <br><br>
                     <span style="font-size: 13px; color: #cbd5e1;"><em>Note: Do not clear your browser cache if you wish
                             to continue managing your active temporary links in the Database tab.</em></span>
                 </div>
@@ -545,7 +593,7 @@
                             <li>Claim a permanent, custom prefix (e.g., nano-url.org/yourname).</li>
                             <li>Links are permanent and never auto-delete.</li>
                             <li>Unlock the ability to Edit target URLs anytime.</li>
-                            <li>Manage double the capacity (up to 10 links).</li>
+                            <li>Manage five times the capacity (up to 10 links).</li>
                         </ul>
                         <strong style="color: #38bdf8; display: block; margin-bottom: 5px; font-size: 14px;">How to
                             Join:</strong>
@@ -730,7 +778,7 @@
         }
     </script>
 
-    <script src="app.build.js"></script>
+    <script src="app.js"></script>
 
 </body>
 
